@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Hosn-Obi:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>Hosn-Obi</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="Hosn-Obi-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="Hosn-Obi:war exploded" />
+    </root>
+  </artifact>
+</component>
