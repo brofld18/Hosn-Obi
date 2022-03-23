@@ -11,14 +11,71 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
-        body {
+        #background {
             background-image: url("Images/Background_Image_1.jpg");
-            background-size: 2000px;
+            background-size: cover;
+            height: 100vh;
+        }
+
+        #mask{
+            height: 100vh;
+        }
+
+        #profile{
+            height: 500px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius:10px 15%;
+        }
+
+        #main_content{
+            padding-left: 100px;
+        }
+
+        .play{
+            width: 250px;
+        }
+
+        #input_name{
+            margin-left: 15px;
+            width: 480px;
+        }
+
+        #heading_name{
+            margin-left: 15px;
         }
     </style>
 
 </head>
 <body>
-<h1>Hosn Obi</h1>
+    <div id="background">
+        <div id="mask" class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+            <div class="text-white">
+                <br/><br/><br/>
+                <div class="text-center">
+                    <h1 class="mb-3">Hosn Obi</h1>
+                    <h5 class="mb-4">Von Florian Brombauer und Moritz Zierler</h5>
+                </div>
+                <br/><br/><br/>
+                <div class="container">
+                    <div class="row">
+                        <div id="profile" class="col-sm-5">
+                            <br/>
+                            <div class="form-group">
+                                <h5 id="heading_name">Name</h5>
+                                <input type="text" class="form-control" id="input_name">
+                            </div>
+                        </div>
+                        <div id="main_content" class="col-sm-7">
+                            <a class="btn btn-outline-light btn-lg m-2 play" href="" role="button">Spiel erstellen</a>
+                            <a class="btn btn-outline-light btn-lg m-2 " href="" role="button">E</a>
+                            <br/>
+                            <a class="btn btn-outline-light btn-lg m-2 play" href="" role="button">Spiel beitreten</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
