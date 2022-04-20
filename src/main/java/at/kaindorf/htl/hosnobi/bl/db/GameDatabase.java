@@ -8,17 +8,18 @@ import at.kaindorf.htl.hosnobi.bl.exceptions.MaxPlayersRechedException;
 import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.Optional;
 
-public class GameStaticDatabase {
+public class GameDatabase {
     //region Singleton
-    private static GameStaticDatabase theInstance;
-    public synchronized static GameStaticDatabase getInstance() {
+    private static GameDatabase theInstance;
+    public synchronized static GameDatabase getInstance() {
         if(theInstance == null) {
-            theInstance = new GameStaticDatabase();
+            theInstance = new GameDatabase();
         }
         return theInstance;
     }
-    private GameStaticDatabase() { }
+    private GameDatabase() { }
     //endregion
 
     private static int idIndex = 0;
@@ -50,5 +51,12 @@ public class GameStaticDatabase {
             if(Games.get(id).getUsers()[i] == user)
                 index = i;
         if(index != -1) Games.get(id).getUsers()[index] = null;
+    }
+
+    public GameManager getGameById(int id) {
+        GameManager game = Games.get(id);
+        if(game != null)
+            return game;
+        throw new GameNotFoundException();
     }
 }
