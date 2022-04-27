@@ -17,28 +17,48 @@
             height: 100vh;
         }
 
-        #mask{
+        #mask {
             height: 100vh;
         }
 
-        .gameId_box{
-            height: 90%;
+        .gameId_box {
+            height: 100%;
             background-color: rgba(255, 255, 255, 1);
             border-radius: 5px;
         }
 
-        .play{
+        .play {
             width: 250px;
         }
 
-        .heading_input_div{
+        .heading_input_div {
             margin: auto;
             width: 90%;
         }
 
-        #gameId{
+        #gameId {
             font-family: "Times New Roman";
             font-size: 50px;
+        }
+
+        #btn_quit{
+            color: red;
+            border-color: red;
+        }
+
+        #btn_quit:hover{
+            background-color: red;
+            color: white;
+        }
+
+        #btn_start{
+            color: #2BB92E;
+            border-color: #2BB92E;
+        }
+
+        #btn_start:hover{
+            background-color: #2BB92E;
+            color: white;
         }
     </style>
 
@@ -53,66 +73,66 @@
                 <h5 class="mb-4">Von Florian Brombauer und Moritz Zierler</h5>
             </div>
         </div>
-            <br/><br/><br/>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-9">
-                        <div class="gameId_box form-group">
+        <br/><br/><br/>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-9">
+                    <div class="gameId_box form-group">
+                        <br/>
+                        <div class="heading_input_div">
+                            <h5>Game ID</h5>
+                            <hr>
+                            <span id="gameId">2 3 5 4 3 5 0 9</span>
+                            <hr>
                             <br/>
-                            <div class="heading_input_div">
-                                <h5>Game ID</h5>
-                                <hr>
-                                <span id="gameId">2 3 5 4 3 5 0 9</span>
-                                <hr>
-                                <br/>
-                                <br/>
-                                <h5>Teilnehmer</h5>
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Name</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Florian</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Moritz</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>...</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td>...</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <br/>
-                            </div>
-                        </div>
-                        <br/><br/>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="gameId_box" class="form-group">
                             <br/>
-                            <div class="heading_input_div">
-                                <h5>Einstellungen</h5>
-                                <br/><br/>
-                            </div>
+                            <h5>Teilnehmer</h5>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Florian</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Moritz</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>...</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">4</th>
+                                    <td>...</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    <div class="text-center text-white">
-                        <a class="btn btn-outline-light btn-lg m-2 play" href="" role="button">Spiel starten</a>
+                </div>
+                <div class="col-sm-2">
+                    <div class="gameId_box" class="form-group">
+                        <br/>
+                        <div class="heading_input_div">
+                            <h5>Einstellungen</h5>
+                            <br/><br/>
+                        </div>
                     </div>
+                </div>
+                <div class="text-center text-white">
+                    <br/>
+                        <a class="btn btn-lg m-2 play" id="btn_quit" href="index.html" role="button">Spiel verlassen</a>
+                        <a class="btn btn-lg m-2 play" id="btn_start" href="" role="button">Spiel starten</a>
+                </div>
             </div>
-            </div>
+        </div>
     </div>
 </div>
 
