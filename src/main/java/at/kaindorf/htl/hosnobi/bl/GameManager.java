@@ -5,10 +5,12 @@ import lombok.Data;
 
 @Data
 public class GameManager {
+    private int gameId;
     private GameState gameState;
     private User[] users;
-    public GameManager() {
+    public GameManager(User user) {
         //TODO: Start with beginning GameState
         users = new User[4];
+        users[0] = user;
     }
 }

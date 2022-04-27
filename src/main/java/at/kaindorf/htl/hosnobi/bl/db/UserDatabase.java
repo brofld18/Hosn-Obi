@@ -25,6 +25,10 @@ public class UserDatabase {
         return userList.stream().anyMatch(user1 -> user1.getId() == user);
     }
 
+    public boolean userExists(String user) {
+        return userList.stream().anyMatch(user1 -> user1.getUsername().equals(user));
+    }
+
     public synchronized User newUser(String username /*TODO: Add gamesettings*/) {
         User user = new User(userList.size(), username, new int[3]);
         return user;
