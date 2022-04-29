@@ -19,12 +19,13 @@ public class GameResource {
     private UriInfo context;
 
     @PUT
-    public Response joinGame(int user, @QueryParam("gameId") @DefaultValue("-1") int gameId) {
+    @Path("/join")
+    public Response joinGame(int userId, @QueryParam("gameId") @DefaultValue("-1") int gameId) {
         if(gameId == -1) return Response.status(Response.Status.BAD_REQUEST).build();
-        if(!UserDatabase.getInstance().userExists(user)) return Response.status(Response.Status.NOT_FOUND)
+        if(!UserDatabase.getInstance().userExists(userId)) return Response.status(Response.Status.NOT_FOUND)
                 .entity("User does not exist").build();
         try {
-            GameDatabase.getInstance().AddUserToGame(gameId, UserDatabase.getInstance().getUserById(user));
+            GameDatabase.getInstance().AddUserToGame(gameId, UserDatabase.getInstance().getUserById(userId));
             return Response.ok().build();
         } catch (MaxPlayersRechedException mpre) {
             return Response.status(Response.Status.NO_CONTENT).entity("Max players reached").build();
@@ -34,9 +35,10 @@ public class GameResource {
     }
 
     @PUT
-    public Response leaveGame(int user, @QueryParam("gameId") @DefaultValue("-1") int gameId) {
+    @Path("/leave")
+    public Response leaveGame(int userId, @QueryParam("gameId") @DefaultValue("-1") int gameId) {
         try {
-            GameDatabase.getInstance().RemoveUserFromGame(gameId, UserDatabase.getInstance().getUserById(user));
+            GameDatabase.getInstance().RemoveUserFromGame(gameId, UserDatabase.getInstance().getUserById(userId));
             return Response.ok().build();
         } catch (GameNotFoundException gnfe) {
             return Response.status(Response.Status.NOT_FOUND).entity("Game not found").build();

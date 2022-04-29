@@ -21,17 +21,26 @@ public class GameDatabase {
     private GameDatabase() { }
     //endregion
 
-    private static int idIndex = 0;
     private static Map<Integer, GameManager> Games = new Hashtable<>();
 
     public int CreateNewGame(User user) {
         GameManager gameManager = new GameManager(user);
-        Games.put(idIndex, gameManager);
-        return idIndex++;
+        int gameId = 0;
+        do {
+            Random random = new Random();
+            gameId = random.nextInt(99999999 - 12345678 + 1) + 1;
+        } while(GameIdUsed(gameId));
+        gameManager.setGameId(gameId);
+        Games.put(gameId, gameManager);
+        return gameId;
+    }
+
+    public boolean GameIdUsed(int gameId) {
+        return Games.containsKey(gameId);
     }
 
     public void AddUserToGame(int id, User user) throws MaxPlayersRechedException {
-        if(Games.get(id) != null) throw new GameNotFoundException();
+        if(Games.get(id) == null) throw new GameNotFoundException();
         if(Arrays.stream(Games.get(id).getUsers()).anyMatch(u -> u == user))
             return;
         int index = -1;

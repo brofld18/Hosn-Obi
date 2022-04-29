@@ -11,10 +11,10 @@ public class HandingOutCardsState extends GameState{
     /**
      * @param cardID If -2 player chose to keep cards. If -1, player chose to take new cards
      */
-    public void ChoseCard(int cardID) throws IllegalStateMethodCallException {
-        if(cardID == -1) {
+    public void ChoseCard(int oldCardId, int newCardId) throws IllegalStateMethodCallException {
+        if(newCardId == -1) {
             //TODO: take new cards
-        } else if(cardID == -1) {
+        } else if(oldCardId == -1) {
             //TODO: keep cards
         } else {
             throw new IllegalStateMethodCallException();

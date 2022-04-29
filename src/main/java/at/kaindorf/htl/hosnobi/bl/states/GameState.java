@@ -10,14 +10,14 @@ public abstract class GameState {
     private int currentPlayer;
     private boolean lastRound;
 
-    public  void PlayersLoaded() throws IllegalStateMethodCallException {
+    public void PlayersLoaded() throws IllegalStateMethodCallException {
         throw new IllegalStateMethodCallException();
     }
     public void ChoseCard(int oldCardId, int newCardId) throws IllegalStateMethodCallException {
         throw new IllegalStateMethodCallException();
     }
     public void PlayerBlock() throws IllegalStateMethodCallException {
-        this.lastRound = true;
+        throw new IllegalStateMethodCallException();
     }
     public void NextPlayer() throws IllegalStateMethodCallException {
         throw new IllegalStateMethodCallException();

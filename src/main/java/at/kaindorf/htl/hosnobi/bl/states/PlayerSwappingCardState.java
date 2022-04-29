@@ -11,7 +11,7 @@ public class PlayerSwappingCardState extends GameState{
     /**
      * @param cardID -1 is equivalent to all cards
      */
-    public void ChoseCard(int cardID) throws IllegalStateMethodCallException {
+    public void ChoseCard(int oldCardId, int newCardId) throws IllegalStateMethodCallException {
         //TODO: Assign active switch card
 
 
