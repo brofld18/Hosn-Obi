@@ -4,11 +4,10 @@ import at.kaindorf.htl.hosnobi.bl.GameManager;
 import at.kaindorf.htl.hosnobi.bl.User;
 import at.kaindorf.htl.hosnobi.bl.exceptions.GameNotFoundException;
 import at.kaindorf.htl.hosnobi.bl.exceptions.MaxPlayersRechedException;
+import at.kaindorf.htl.hosnobi.bl.exceptions.UserNotFoundException;
 
-import java.util.Arrays;
-import java.util.Dictionary;
-import java.util.Hashtable;
-import java.util.Optional;
+import javax.xml.crypto.dsig.keyinfo.KeyValue;
+import java.util.*;
 
 public class GameDatabase {
     //region Singleton
@@ -23,12 +22,12 @@ public class GameDatabase {
     //endregion
 
     private static int idIndex = 0;
-    private static Dictionary<Integer, GameManager> Games = new Hashtable<>();
+    private static Map<Integer, GameManager> Games = new Hashtable<>();
 
-    public GameManager CreateNewGame() {
-        GameManager gameManager = new GameManager();
-        Games.put(idIndex++, gameManager);
-        return gameManager;
+    public int CreateNewGame(User user) {
+        GameManager gameManager = new GameManager(user);
+        Games.put(idIndex, gameManager);
+        return idIndex++;
     }
 
     public void AddUserToGame(int id, User user) throws MaxPlayersRechedException {
@@ -45,6 +44,7 @@ public class GameDatabase {
     }
 
     public void RemoveUserFromGame(int id, User user) {
+        if(!isUserInGame(id, user.getId())) throw new UserNotFoundException();
         if(Games.get(id) != null) throw new GameNotFoundException();
         int index = -1;
         for (int i = 0; i < Games.get(id).getUsers().length; i++)
@@ -58,5 +58,9 @@ public class GameDatabase {
         if(game != null)
             return game;
         throw new GameNotFoundException();
+    }
+
+    public boolean isUserInGame(int gameId, int userId) {
+        return Arrays.stream(Games.get(gameId).getUsers()).anyMatch(user -> user.getId() == userId);
     }
 }
