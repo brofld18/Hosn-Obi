@@ -14,14 +14,14 @@
         #background {
             background-image: url("Images/Background_Image_1.jpg");
             background-size: cover;
-            height: 100vh;
+            height: 100%;
         }
 
         #mask {
             height: 100vh;
         }
 
-        .gameId_box {
+        .background_box {
             height: 100%;
             background-color: rgba(255, 255, 255, 1);
             border-radius: 5px;
@@ -31,7 +31,7 @@
             width: 250px;
         }
 
-        .heading_input_div {
+        .content_div {
             margin: auto;
             width: 90%;
         }
@@ -76,19 +76,17 @@
         <br/><br/><br/>
         <div class="container">
             <div class="row">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-9">
-                    <div class="gameId_box form-group">
+                    <div class="background_box form-group">
                         <br/>
-                        <div class="heading_input_div">
+                        <div class="content_div">
                             <h5>Game ID</h5>
                             <hr>
                             <span id="gameId">2 3 5 4 3 5 0 9</span>
                             <hr>
                             <br/>
-                            <br/>
                             <h5>Teilnehmer</h5>
-                            <table class="table">
+                            <table class="table table-hover">
                                 <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -114,15 +112,28 @@
                                 </tr>
                                 </tbody>
                             </table>
+                            <br/>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-2">
-                    <div class="gameId_box" class="form-group">
+                <div class="col-sm-3">
+                    <div class="background_box form-group">
                         <br/>
-                        <div class="heading_input_div">
+                        <div class="content_div">
                             <h5>Einstellungen</h5>
-                            <br/><br/>
+                            <hr>
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th scope="row">Map and Coin</th>
+                                    <td>Classic</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Kartenset</th>
+                                    <td>Classic</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
