@@ -25,7 +25,7 @@ public class GameResource {
         if(!UserDatabase.getInstance().userExists(userId)) return Response.status(Response.Status.NOT_FOUND)
                 .entity("User does not exist").build();
         try {
-            GameDatabase.getInstance().AddUserToGame(gameId, UserDatabase.getInstance().getUserById(userId));
+            GameDatabase.getInstance().addUserToGame(gameId, UserDatabase.getInstance().getUserById(userId));
             return Response.ok().build();
         } catch (MaxPlayersRechedException mpre) {
             return Response.status(Response.Status.NO_CONTENT).entity("Max players reached").build();
@@ -54,7 +54,7 @@ public class GameResource {
             UriBuilder uriBuilder = context.getAbsolutePathBuilder();
             uriBuilder.path("/" + gameId);
 
-            return Response.created(uriBuilder.build()).build();
+            return Response.created(uriBuilder.build()).entity(gameId).build();
         } catch (UserNotFoundException unfe) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }

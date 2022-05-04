@@ -6,7 +6,6 @@ import at.kaindorf.htl.hosnobi.bl.exceptions.GameNotFoundException;
 import at.kaindorf.htl.hosnobi.bl.exceptions.MaxPlayersRechedException;
 import at.kaindorf.htl.hosnobi.bl.exceptions.UserNotFoundException;
 
-import javax.xml.crypto.dsig.keyinfo.KeyValue;
 import java.util.*;
 
 public class GameDatabase {
@@ -39,7 +38,7 @@ public class GameDatabase {
         return Games.containsKey(gameId);
     }
 
-    public void AddUserToGame(int id, User user) throws MaxPlayersRechedException {
+    public void addUserToGame(int id, User user) throws MaxPlayersRechedException {
         if(Games.get(id) == null) throw new GameNotFoundException();
         if(Arrays.stream(Games.get(id).getUsers()).anyMatch(u -> u == user))
             return;
@@ -54,7 +53,7 @@ public class GameDatabase {
 
     public void RemoveUserFromGame(int id, User user) {
         if(!isUserInGame(id, user.getId())) throw new UserNotFoundException();
-        if(Games.get(id) != null) throw new GameNotFoundException();
+        if(Games.get(id) == null) throw new GameNotFoundException();
         int index = -1;
         for (int i = 0; i < Games.get(id).getUsers().length; i++)
             if(Games.get(id).getUsers()[i] == user)
@@ -70,6 +69,6 @@ public class GameDatabase {
     }
 
     public boolean isUserInGame(int gameId, int userId) {
-        return Arrays.stream(Games.get(gameId).getUsers()).anyMatch(user -> user.getId() == userId);
+        return Arrays.stream(Games.get(gameId).getUsers()).anyMatch(user -> (user != null && user.getId() == userId));
     }
 }

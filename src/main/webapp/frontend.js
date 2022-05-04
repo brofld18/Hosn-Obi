@@ -7,7 +7,7 @@ function setGameId(gameId){
 }
 
 function createLobby(){
-
+    createGame();
 }
 
 function joinLobby(gameId){

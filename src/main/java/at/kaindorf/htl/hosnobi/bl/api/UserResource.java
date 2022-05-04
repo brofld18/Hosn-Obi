@@ -34,7 +34,7 @@ public class UserResource {
         User user = UserDatabase.getInstance().newUser(username);
         if(gameId != -1) {
             try {
-                GameDatabase.getInstance().AddUserToGame(gameId, user);
+                GameDatabase.getInstance().addUserToGame(gameId, user);
             } catch (MaxPlayersRechedException mpre) {
                 return Response.status(Response.Status.CONFLICT).entity("Max users for game reached.").build();
             } catch (GameNotFoundException gnfe) {
