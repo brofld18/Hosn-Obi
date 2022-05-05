@@ -2,8 +2,8 @@ var userId = -1;
 var gameId = -1;
 var usernames = ["", "", "", ""];
 
-function createUser(username) {
-    fetch('./api/user', {
+async function createUser(username) {
+    await fetch('./api/user', {
         method: "POST",
         body: username
     }).then(response => {
@@ -11,27 +11,32 @@ function createUser(username) {
             throw new Error(response.status + ": " + response.statusText);
         }
         return response.json();
-    }).then(data => userId = data.Users[0].id)
+    }).then(data => {
+        userId = data.id
+    })
         .catch(error => alert(error));
+    sessionStorage.setItem("userId", userId);
 }
 
-function createGame() {
-    if(id == -1) throw new Error("You first have to create a User!");
-    fetch('./api/game', {
+async function createGame() {
+    if (userId == -1) throw new Error("You first have to create a User!");
+    await fetch('./api/game', {
         method: "POST",
         body: userId,
     }).then(response => {
         if (response.status != 201) {
             throw new Error(response.status + ": " + response.statusText);
         }
-        gameId = response.body;
-        setGameId(gameId);
-    }).catch(error => alert(error));
+        return response.json();
+    }).then(data => gameId = data)
+        .catch(error => alert(error));
+    sessionStorage.setItem("gameId", gameId);
+    await getGame();
 }
 
-function joinGame(GameId) {
+async function joinGame(GameId) {
     if(userId == -1) throw new Error("You first have to create a User!");
-    fetch('./api/game/join?gameId=' + GameId, {
+    await fetch('./api/game/join?gameId=' + GameId, {
         method: "PUT",
         body: userId
     }).then(response => {
@@ -39,14 +44,15 @@ function joinGame(GameId) {
             throw new Error(response.status + ": " + response.statusText);
         }
         gameId = GameId;
-        setGameId(gameId);
     }).catch(error => alert(error));
+    sessionStorage.setItem("gameId", gameId);
+    await getGame();
 }
 
-function leaveGame() {
+async function leaveGame() {
     if(userId == -1) throw new Error("You first have to create a User!");
     if(gameId == -1) throw new Error("You aren't in a Game!");
-    fetch('./api/game/leave?gameId=' + gameId, {
+    await fetch('./api/game/leave?gameId=' + gameId, {
         method: "PUT",
         body: userId
     }).then(response => {
@@ -56,8 +62,8 @@ function leaveGame() {
     }).catch(error => alert(error));
 }
 
-function getGame() {
-    fetch('./api/game?gameId=' + gameId, {
+async function getGame() {
+    await fetch('./api/game?id=' + gameId, {
         method: "GET",
     }).then(response => {
         if (response.status != 200) {
@@ -65,13 +71,27 @@ function getGame() {
         }
         return response.json();
     }).then(data => {
-        for(i = 0; i < data.length; i++) {
-            if(data.Users[i] != null) {
-                usernames[i] = data.Users[i].username;
+        for(i = 0; i < data.users.length; i++) {
+            if(data.users[i] != null) {
+                usernames[i] = data.users[i].username;
             } else {
                 usernames[i] = "";
             }
         }
     }).catch(error => alert(error));
-    fillPlayer(usernames);
+    sessionStorage.setItem("usernames", usernames);
+    try {
+        fillPlayer(usernames);
+    } catch {}
+}
+
+async function loadVariables() {
+    gameId = sessionStorage.getItem("gameId");
+    userId = sessionStorage.getItem("userId");
+    usernames = sessionStorage.getItem("usernames").split(",");
+    try {
+        await getGame();
+        fillPlayer(usernames);
+        setGameId(gameId);
+    } catch {}
 }

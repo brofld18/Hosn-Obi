@@ -68,7 +68,7 @@
     </style>
 
 </head>
-<body>
+<body onload="onLoad()">
 <div id="background">
     <div id="mask" class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
         <div class="text-white">
@@ -144,7 +144,7 @@
                 </div>
                 <div class="text-center text-white">
                     <br/>
-                        <a class="btn btn-lg m-2 play" id="btn_quit" href="index.html" role="button">Spiel verlassen</a>
+                        <a class="btn btn-lg m-2 play" id="btn_quit" href="index.html" role="button" onclick="leaveGame()">Spiel verlassen</a>
                         <a class="btn btn-lg m-2 play" id="btn_start" href="" role="button">Spiel starten</a>
                 </div>
             </div>

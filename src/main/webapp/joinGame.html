@@ -71,7 +71,9 @@
                             <br/>
                             <div id="heading_input_div">
                                 <h5>Game ID</h5>
-                                <input type="text" class="form-control" placeholder="23543509" id="input_id">
+                                <input type="text" class="form-control" placeholder="23543509" id="txtGameId">
+                                <h5>Username</h5>
+                                <input type="text" class="form-control" id="txtUsername">
                             </div>
                             <br/><br/>
                             <img src="Images/Cards.png" id="cardsImage"/>
@@ -79,7 +81,7 @@
                         <br/>
                         <div class="text-center">
                             <a class="btn btn-outline-light btn-lg m-2 play" href="index.html" role="button">Hauptmenü</a>
-                            <a class="btn btn-outline-light btn-lg m-2 play" onclick="joinLobby(input_id.value)" role="button">Spiel beitreten</a>
+                            <a class="btn btn-outline-light btn-lg m-2 play" onclick="joinLobby(txtGameId.value, txtUsername.value)" role="button">Spiel beitreten</a>
                         </div>
                     </div>
                     <div class="col-sm-1"></div>
