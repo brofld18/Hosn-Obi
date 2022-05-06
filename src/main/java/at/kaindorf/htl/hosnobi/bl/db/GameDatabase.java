@@ -44,8 +44,10 @@ public class GameDatabase {
             return;
         int index = -1;
         for (int i = 0; i < Games.get(id).getUsers().length; i++)
-            if(Games.get(id).getUsers()[i] == null)
+            if(Games.get(id).getUsers()[i] == null) {
                 index = i;
+                break;
+            }
         if(index == -1)
             throw new MaxPlayersRechedException();
         Games.get(id).getUsers()[index] = user;

@@ -15,8 +15,7 @@ async function createLobby(username) {
     window.open("lobby.html", "_self");
 }
 
-async function joinLobby(gameId, username){
-    await createUser(username);
+async function joinLobby(gameId){
     await joinGame(gameId);
     window.open("lobby.html", "_self");
 }
@@ -25,6 +24,11 @@ function setSettings(){
 
 }
 
-function onLoad() {
-    loadVariables();
+async function onLoad() {
+    await loadVariables();
+}
+
+async function enterJoinLobbyScreen(username) {
+    await createUser(username);
+    window.open("joinGame.html", "_self");
 }
