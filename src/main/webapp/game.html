@@ -25,11 +25,13 @@
             padding-right: 20px;
             padding-bottom: 10px;
 
+            background-image: url("Images/holztisch-hintergrund.jpg");
+            background-size: cover;
             height: 100%;
         }
 
         .border{
-            border: black;
+           border: black;
         }
 
         .topLane{
@@ -43,134 +45,149 @@
         .bottomLane{
             height: 40%;
         }
+
+        #player1, #player2, #player3, #player4, #styledFont, #player1lifes{
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: black;
+        }
+
+        .blackAndWhite{
+            font-weight: bold;
+            color: black;
+            background-color: white;
+        }
     </style>
 
 </head>
 <body>
 <div id="field">
         <div class="row justify-content-center topLane">
-            <div class="col-sm-2 border">
-                Empty
+            <div class="col-sm-2">
             </div>
-            <div class="col-sm-8 border" style="height: 100%">
+            <div class="col-sm-8" style="height: 100%">
                 <div class="row justify-content-center" style="height: 100%">
-                    <div class="col-sm-3 border">
+                    <div class="col-sm-3">
                         <div class="row justify-content-end" style="height: 28%">
-                            <div class="col-sm-8 border">
-                                Content
+                            <div class="col-sm-8" style="text-align: right">
+                                <span id="player3">Player 3</span>
+                                <br/>
+                                <span class="blackAndWhite">Leben: </span><span id="player3lifes" class="blackAndWhite">3</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-2 border" style="height: 100%; text-align: right">
+                    <div class="col-sm-2" style="height: 100%; text-align: right">
                         <img src="Images/Cardset1/card_back_red.png" style="height: 100%">
                     </div>
-                    <div class="col-sm-2 border" style="height: 100%; text-align: center">
+                    <div class="col-sm-2" style="height: 100%; text-align: center">
                         <img src="Images/Cardset1/card_back_red.png" style="height: 100%">
                     </div>
-                    <div class="col-sm-2 border" style="height: 100%; text-align: left">
+                    <div class="col-sm-2" style="height: 100%; text-align: left">
                         <img src="Images/Cardset1/card_back_red.png" style="height: 100%">
                     </div>
-                    <div class="col-sm-3 border">
-                        Empty
+                    <div class="col-sm-3">
                     </div>
                 </div>
             </div>
-            <div class="col-sm-2 border">
+            <div class="col-sm-2">
                 <div class="row justify-content-end" style="height: 40%">
-                    <div class="col-sm-8 border">
-                        GameData
+                    <div class="col-sm-8" style="text-align: right">
+                        <span>GameID: </span><span id="gamecode">23543509</span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row justify-content-center midLane">
-            <div class="col-sm-2 border">
-                <div class="row justify-content-start" style="height: 16%">
-                    <div class="col-sm-8 border">
-                        Content
+            <div class="col-sm-2">
+                <div class="row justify-content-start" style="height: 10%">
+                    <div class="col-sm-8">
+                        <span id="player2">Player 2</span>
+                        <br/>
+                        <span class="blackAndWhite">Leben: </span><span id="player2lifes" class="blackAndWhite">3</span>
                     </div>
                 </div>
-                <div class="row justify-content-start" style="height: 28%">
-                    <div class="col-sm-8 border">
-                        <img src="Images/Cardset1/card_back_red.png" style="width: 60%; transform: rotate(90deg)">
+                <div class="row justify-content-start" style="height: 22%">
+                    <div class="col-sm-8">
+                        <img src="Images/Cardset1/card_back_red.png" style="width: 60%; transform: rotate(90deg); padding-left: 5px">
                     </div>
                 </div>
-                <div class="row justify-content-start" style="height: 28%">
-                    <div class="col-sm-8 border">
-                        <img src="Images/Cardset1/card_back_red.png" style="width: 60%; transform: rotate(90deg)">
+                <div class="row justify-content-start" style="height: 22%">
+                    <div class="col-sm-8">
+                        <img src="Images/Cardset1/card_back_red.png" style="width: 60%; transform: rotate(90deg); padding-left: 5px">
                     </div>
                 </div>
-                <div class="row justify-content-start" style="height: 28%">
-                    <div class="col-sm-8 border">
-                        <img src="Images/Cardset1/card_back_red.png" style="width: 60%; transform: rotate(90deg)">
+                <div class="row justify-content-start" style="height: 22%">
+                    <div class="col-sm-8">
+                        <img src="Images/Cardset1/card_back_red.png" style="width: 60%; transform: rotate(90deg); padding-left: 5px">
                     </div>
                 </div>
             </div>
-            <div class="col-sm-8 border" style="height: 100%">
+            <div class="col-sm-8" style="height: 100%">
                 <div class="row justify-content-center" style="height: 100%">
-                    <div class="col-sm-3 border" style="height: 100%; text-align: right">
-                        <img src="Images/Cardset1/jack_of_hearts2.png" style="height: 80%">
+                    <div class="col-sm-3" style="height: 100%; text-align: right">
+                        <img src="Images/Cardset1/10_of_spades.png" style="height: 70%; margin-top: 15%">
                     </div>
-                    <div class="col-sm-3 border" style="height: 100%; text-align: center">
-                        <img src="Images/Cardset1/jack_of_hearts2.png" style="height: 80%">
+                    <div class="col-sm-3" style="height: 100%; text-align: center">
+                        <img src="Images/Cardset1/queen_of_clubs2.png" style="height: 70%; margin-top: 15%">
                     </div>
-                    <div class="col-sm-3 border" style="height: 100%; text-align: left">
-                        <img src="Images/Cardset1/jack_of_hearts2.png" style="height: 80%">
+                    <div class="col-sm-3" style="height: 100%; text-align: left">
+                        <img src="Images/Cardset1/7_of_clubs.png" style="height: 70%; margin-top: 15%">
                     </div>
                 </div>
             </div>
-            <div class="col-sm-2 border">
-                <div class="row justify-content-end" style="height: 16%">
-                    <div class="col-sm-8 border">
-                        Content
+            <div class="col-sm-2">
+                <div class="row justify-content-end" style="height: 10%">
+                    <div class="col-sm-8" style="text-align: right">
+                        <span id="player4">Player 4</span>
+                        <br/>
+                        <span class="blackAndWhite">Leben: </span><span id="player4lifes" class="blackAndWhite">3</span>
                     </div>
                 </div>
-                <div class="row justify-content-end" style="height: 28%">
-                    <div class="col-sm-8 border" style="text-align: right">
-                        <img src="Images/Cardset1/card_back_red.png" style="width: 60%; transform: rotate(-90deg)">
+                <div class="row justify-content-end" style="height: 22%">
+                    <div class="col-sm-8" style="text-align: right">
+                        <img src="Images/Cardset1/card_back_red.png" style="width: 60%; transform: rotate(-90deg); padding-right: 5px">
                     </div>
                 </div>
-                <div class="row justify-content-end" style="height: 28%">
-                    <div class="col-sm-8 border" style="text-align: right">
-                        <img src="Images/Cardset1/card_back_red.png" style="width: 60%; transform: rotate(-90deg)">
+                <div class="row justify-content-end" style="height: 22%">
+                    <div class="col-sm-8" style="text-align: right">
+                        <img src="Images/Cardset1/card_back_red.png" style="width: 60%; transform: rotate(-90deg); padding-right: 5px">
                     </div>
                 </div>
-                <div class="row justify-content-end" style="height: 28%">
-                    <div class="col-sm-8 border" style="text-align: right">
-                        <img src="Images/Cardset1/card_back_red.png" style="width: 60%; transform: rotate(-90deg)">
+                <div class="row justify-content-end" style="height: 22%">
+                    <div class="col-sm-8" style="text-align: right">
+                        <img src="Images/Cardset1/card_back_red.png" style="width: 60%; transform: rotate(-90deg); padding-right: 5px">
                     </div>
                 </div>
             </div>
         </div>
         <div class="row justify-content-center bottomLane">
-            <div class="col-sm-2 border">
-                Empty
+            <div class="col-sm-2">
             </div>
-            <div class="col-sm-8 border">
+            <div class="col-sm-8">
                 <div class="row justify-content-center" style="height: 100%">
-                    <div class="col-sm-2 border">
-                        Content 1
+                    <div class="col-sm-2" style="text-align: right; padding-top: 25%">
+                        <span id="player1">Player 1</span>
                     </div>
-                    <div class="col-sm-8 border">
+                    <div class="col-sm-8">
                         <div class="row justify-content-center" style="height: 100%">
-                            <div class="col-sm-4 border" style="text-align: right">
-                                <img src="Images/Cardset1/jack_of_hearts2.png" style="width: 90%">
+                            <div class="col-sm-4" style="text-align: right">
+                                <img src="Images/Cardset1/jack_of_hearts2.png" style="width: 90%; margin-top: 10%; box-shadow: 0px 0px 15px 5px #606060;border-radius: 10px">
                             </div>
-                            <div class="col-sm-4 border" style="text-align: center">
-                                <img src="Images/Cardset1/ace_of_hearts.png" style="width: 90%">
+                            <div class="col-sm-4" style="text-align: center">
+                                <img src="Images/Cardset1/ace_of_hearts.png" style="width: 90%; margin-top: 10%; box-shadow: 0px 0px 15px 5px #606060;border-radius: 10px">
                             </div>
-                            <div class="col-sm-4 border" style="text-align: left">
-                                <img src="Images/Cardset1/7_of_hearts.png" style="width: 90%">
+                            <div class="col-sm-4" style="text-align: left">
+                                <img src="Images/Cardset1/7_of_hearts.png" style="width: 90%; margin-top: 10%; box-shadow: 0px 0px 15px 5px #606060;border-radius: 10px">
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-2 border">
-                        Content 2
+                    <div class="col-sm-2" style="padding-top: 25%">
+                        <span id="styledFont">Leben: </span><span id="player1lifes">3</span>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-2 border">
-                Empty
+            <div class="col-sm-2">
             </div>
         </div>
 </div>
