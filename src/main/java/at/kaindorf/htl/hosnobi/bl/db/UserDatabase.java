@@ -3,6 +3,7 @@ package at.kaindorf.htl.hosnobi.bl.db;
 import at.kaindorf.htl.hosnobi.bl.GameManager;
 import at.kaindorf.htl.hosnobi.bl.User;
 import at.kaindorf.htl.hosnobi.bl.exceptions.UserNotFoundException;
+import at.kaindorf.htl.hosnobi.bl.resourceFactorys.Card;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,7 @@ public class UserDatabase {
     }
 
     public synchronized User newUser(String username /*TODO: Add gamesettings*/) {
-        User user = new User(userList.size(), username, new int[3]);
+        User user = new User(userList.size(), username, new Card[3], 2);
         userList.add(user);
         return user;
     }

@@ -30,6 +30,11 @@ function setSettings(){
 
 async function onLoad() {
     await loadVariables();
+    if (gameId != null && userId != null && inGame != true) {
+        gameStarted().then(r => {
+            window.open("game.html", "_self");
+        })
+    }
 }
 
 async function enterJoinLobbyScreen(username) {
@@ -77,4 +82,25 @@ function cardClicked(cardNum){
     else {
         document.getElementById("card3").style.boxShadow = "0px 0px 15px 5px #606060";
     }
+}
+
+function Start() {
+    startGame().then(r => {
+        window.open("game.html", "_self");
+    });
+
+}
+
+function SetGameManager(gameManager) {
+    document.getElementById("Player1Lives").innerText = "Leben: " + gameManager.users[0].lives;
+    document.getElementById("Player2Lives").innerText = "Leben: " + gameManager.users[1].lives;
+    document.getElementById("Player3Lives").innerText = "Leben: " + gameManager.users[2].lives;
+    document.getElementById("Player4Lives").innerText = "Leben: " + gameManager.users[3].lives;
+
+    document.getElementById("Player1Name").innerText = gameManager.users[0].username;
+    document.getElementById("Player2Name").innerText = gameManager.users[1].username;
+    document.getElementById("Player3Name").innerText = gameManager.users[2].username;
+    document.getElementById("Player4Name").innerText = gameManager.users[3].username;
+
+    document.getElementById()
 }

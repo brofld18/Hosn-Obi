@@ -1,6 +1,7 @@
 var userId = -1;
 var gameId = -1;
 var usernames = ["", "", "", ""];
+var inGame = false;
 
 async function createUser(username) {
     await fetch('./api/user', {
@@ -36,7 +37,7 @@ async function createGame() {
 
 async function joinGame(GameId) {
     if(userId == -1) throw new Error("You first have to create a User!");
-    await fetch('./api/game/join?gameId=' + GameId, {
+    await fetch('./api/game/join/?gameId=' + GameId, {
         method: "PUT",
         body: userId
     }).then(response => {
@@ -63,7 +64,7 @@ async function leaveGame() {
 }
 
 async function getGame() {
-    await fetch('./api/game?id=' + gameId, {
+    await fetch('./api/game/' + gameId, {
         method: "GET",
     }).then(response => {
         if (response.status != 200) {
@@ -89,9 +90,39 @@ async function loadVariables() {
     gameId = sessionStorage.getItem("gameId");
     userId = sessionStorage.getItem("userId");
     usernames = sessionStorage.getItem("usernames").split(",");
+    inGame = sessionStorage.getItem("inGame");
     try {
         await getGame();
         fillPlayer(usernames);
         setGameId(gameId);
     } catch {}
+}
+
+async function startGame() {
+    await fetch('./api/game/' + gameId + "/startGame", {
+        method: "PUT"
+    }).then(response => {
+        if (response.status != 200) {
+            throw new Error(response.status + ": " + response.statusText);
+        }
+    }).catch(error => alert(error));
+}
+
+async function gameStarted() {
+    await fetch('./api/game/' + gameId + "/startGame", {
+        method: "GET"
+    }).then(response => {
+        if (response.status != 200) {
+            throw new Error(response.status + ": " + response.statusText);
+        }
+        return response.json();
+    }).then(async data => {
+        if (data) return
+        else {
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            await getGame();
+            await gameStarted();
+            sessionStorage.setItem("inGame", "true");
+        }
+    }).catch(error => alert(error));
 }

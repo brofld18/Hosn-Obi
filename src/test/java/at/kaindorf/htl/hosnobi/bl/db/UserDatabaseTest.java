@@ -1,6 +1,7 @@
 package at.kaindorf.htl.hosnobi.bl.db;
 
 import at.kaindorf.htl.hosnobi.bl.User;
+import at.kaindorf.htl.hosnobi.bl.resourceFactorys.Card;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -10,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UserDatabaseTest {
-    private User user = new User(0, "Test", new int [] {0, 0, 0});
+    private User user = new User(0, "Test", new Card[3], 2);
     @Test
     @Order(0)
     void testUserCreation() {
