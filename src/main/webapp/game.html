@@ -90,6 +90,13 @@
             box-shadow: 0px 0px 15px 5px #606060;
         }
 
+        #blocked1, #blocked2, #blocked3, #blocked4{
+            font-size: 18px;
+            font-weight: bold;
+            color: red;
+            background-color: black;
+        }
+
     </style>
 
 </head>
@@ -103,20 +110,20 @@
                     <div class="col-sm-3">
                         <div class="row justify-content-end" style="height: 28%">
                             <div class="col-sm-8" style="text-align: right">
-                                <span id="player3">Player 3</span>
+                                <span id="player3">Player 3</span><span id="blocked3"></span>
                                 <br/>
                                 <span class="blackAndWhite">Leben: </span><span id="player3lifes" class="blackAndWhite">3</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-2" style="height: 100%; text-align: right">
-                        <img src="Images/Cardset1/card_back_red.png" class="player3Cards">
+                        <img src="Images/Cardset1/card_back_red.png" class="player3Cards" id="player3Card1">
                     </div>
                     <div class="col-sm-2" style="height: 100%; text-align: center">
-                        <img src="Images/Cardset1/card_back_red.png" class="player3Cards">
+                        <img src="Images/Cardset1/card_back_red.png" class="player3Cards" id="player3Card2">
                     </div>
                     <div class="col-sm-2" style="height: 100%; text-align: left">
-                        <img src="Images/Cardset1/card_back_red.png" class="player3Cards">
+                        <img src="Images/Cardset1/card_back_red.png" class="player3Cards" id="player3Card3">
                     </div>
                     <div class="col-sm-3">
                     </div>
@@ -134,61 +141,61 @@
             <div class="col-sm-2">
                 <div class="row justify-content-start" style="height: 10%">
                     <div class="col-sm-8">
-                        <span id="player2">Player 2</span>
+                        <span id="player2">Player 2</span><span id="blocked2"></span>
                         <br/>
                         <span class="blackAndWhite">Leben: </span><span id="player2lifes" class="blackAndWhite">3</span>
                     </div>
                 </div>
                 <div class="row justify-content-start" style="height: 22%">
                     <div class="col-sm-8">
-                        <img src="Images/Cardset1/card_back_red.png" class="player2Cards">
+                        <img src="Images/Cardset1/card_back_red.png" id="player2Card1" class="player2Cards">
                     </div>
                 </div>
                 <div class="row justify-content-start" style="height: 22%">
                     <div class="col-sm-8">
-                        <img src="Images/Cardset1/card_back_red.png" class="player2Cards">
+                        <img src="Images/Cardset1/card_back_red.png" id="player2Card2" class="player2Cards">
                     </div>
                 </div>
                 <div class="row justify-content-start" style="height: 22%">
                     <div class="col-sm-8">
-                        <img src="Images/Cardset1/card_back_red.png" class="player2Cards">
+                        <img src="Images/Cardset1/card_back_red.png" id="player2Card3" class="player2Cards">
                     </div>
                 </div>
             </div>
             <div class="col-sm-8" style="height: 100%">
                 <div class="row justify-content-center" style="height: 100%">
                     <div class="col-sm-3" style="height: 100%; text-align: right">
-                        <img src="Images/Cardset1/10_of_spades.png" style="height: 70%; margin-top: 15%">
+                        <img src="Images/Cardset1/10_of_spades.png" id="midCard1" onclick="switchCards(1)" style="height: 70%; margin-top: 15%">
                     </div>
                     <div class="col-sm-3" style="height: 100%; text-align: center">
-                        <img src="Images/Cardset1/queen_of_clubs2.png" style="height: 70%; margin-top: 15%">
+                        <img src="Images/Cardset1/queen_of_clubs2.png" id="midCard2" onclick="switchCards(2)" style="height: 70%; margin-top: 15%">
                     </div>
                     <div class="col-sm-3" style="height: 100%; text-align: left">
-                        <img src="Images/Cardset1/7_of_clubs.png" style="height: 70%; margin-top: 15%">
+                        <img src="Images/Cardset1/7_of_clubs.png" id="midCard3" onclick="switchCards(3)" style="height: 70%; margin-top: 15%">
                     </div>
                 </div>
             </div>
             <div class="col-sm-2">
                 <div class="row justify-content-end" style="height: 10%">
                     <div class="col-sm-8" style="text-align: right">
-                        <span id="player4">Player 4</span>
+                        <span id="player4">Player 4</span><span id="blocked4"></span>
                         <br/>
                         <span class="blackAndWhite">Leben: </span><span id="player4lifes" class="blackAndWhite">3</span>
                     </div>
                 </div>
                 <div class="row justify-content-end" style="height: 22%">
                     <div class="col-sm-8" style="text-align: right">
-                        <img src="Images/Cardset1/card_back_red.png" class="player4Cards">
+                        <img src="Images/Cardset1/card_back_red.png" id="player4Card1" class="player4Cards">
                     </div>
                 </div>
                 <div class="row justify-content-end" style="height: 22%">
                     <div class="col-sm-8" style="text-align: right">
-                        <img src="Images/Cardset1/card_back_red.png" class="player4Cards">
+                        <img src="Images/Cardset1/card_back_red.png" id="player4Card2" class="player4Cards">
                     </div>
                 </div>
                 <div class="row justify-content-end" style="height: 22%">
                     <div class="col-sm-8" style="text-align: right">
-                        <img src="Images/Cardset1/card_back_red.png" class="player4Cards">
+                        <img src="Images/Cardset1/card_back_red.png" id="player4Card3" class="player4Cards">
                     </div>
                 </div>
             </div>
@@ -199,7 +206,7 @@
             <div class="col-sm-8">
                 <div class="row justify-content-center" style="height: 100%">
                     <div class="col-sm-2" style="text-align: right; padding-top: 23%">
-                        <span id="player1">Player 1</span>
+                        <span id="player1">Player 1</span><span id="blocked1"></span>
                         <br/>
                         <span id="styledFont" class="blackAndWhite">Leben: </span><span id="player1lifes" class="blackAndWhite">3</span>
                     </div>
@@ -218,13 +225,13 @@
                     </div>
                     <div class="col-sm-2" style="padding-top: 5%">
                         <div>
-                            <button type="button" class="btn btn-success" style="width: 80%">Alle austauschen</button>
+                            <button type="button" class="btn btn-success" onclick="switchAll()" style="width: 80%">Alle austauschen</button>
                         </div>
                         <div style="padding-top: 5%">
-                            <button type="button" class="btn btn-success" style="width: 80%">Weiter</button>
+                            <button type="button" class="btn btn-success" onclick="nextOne()" style="width: 80%">Weiter</button>
                         </div>
                         <div style="padding-top: 5%">
-                            <button type="button" class="btn btn-danger" style="width: 80%">Sperren</button>
+                            <button type="button" class="btn btn-danger" onclick="block()" style="width: 80%">Sperren</button>
                         </div>
 
                     </div>
