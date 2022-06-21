@@ -263,6 +263,13 @@ function playerBlocked(id){
     }
 }
 
+function lifeCounter(playerlifes){
+    document.getElementById("player1lifes").innerText = playerlifes[0];
+    document.getElementById("player2lifes").innerText = playerlifes[1];
+    document.getElementById("player3lifes").innerText = playerlifes[2];
+    document.getElementById("player4lifes").innerText = playerlifes[3];
+}
+
 function Start() {
     startGame().then(r => {
         window.open("game.html", "_self");
@@ -285,6 +292,6 @@ function SetGameManager(gameManager) {
 }
 
 //ich gette Username - ich zeige Spieler hat gewonnen --> Moritz nach brunch
-//ich bekomme Lebencounter Array[4] --> Stelle 0 Spieler selbst --> Moritz nach brunch
+//ich bekomme Lebencounter Array[4] --> Stelle 0 Spieler selbst --> Flo Kontrolle
 
 //Wenn man selbst wieder dran ist die Variable cardsSwitched wieder auf 0 setzen. --> Flo bitte machen
