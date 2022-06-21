@@ -12,43 +12,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import static at.kaindorf.htl.hosnobi.bl.api.websockets.game.GameEndpoint.broadcast;
+
 public class HandingOutCardsState extends GameState{
     public HandingOutCardsState(GameState previousState) {
         super(previousState);
-        swapMap = new HashMap<>();
         for (User user :
                 getGameManager().getUsers()) {
-            for (int i = 0; i < 3; i++) {
-                int index = (int) (Math.random()*(getGameManager().getCardsAvailable().stream().count()));
-                user.getCards()[i] = getGameManager().getCardsAvailable().get(index);
-                getGameManager().getCardsUsed().add(getGameManager().getCardsAvailable().get(index));
-                getGameManager().getCardsAvailable().remove(index);
-            }
-        }
-        try {
-            GameEndpoint.broadcast(getGameManager());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (EncodeException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private Map<User, boolean[]> swapMap;
-
-    /**
-     *
-     * @param swap every boolean array has to have a size of 3
-     */
-    public void AddSwapCards(User user, boolean[] swap) {
-        swapMap.put(user, swap);
-        if(swapMap.size() == 4) SwapCards();
-    }
-
-
-    private void SwapCards() {
-        for (User user :
-                swapMap.keySet()) {
             for (int i = 0; i < 3; i++) {
                 int index = (int) (Math.random()*(getGameManager().getCardsAvailable().stream().count()));
                 user.getCards()[i] = getGameManager().getCardsAvailable().get(index);
@@ -61,6 +31,27 @@ public class HandingOutCardsState extends GameState{
             getGameManager().getTableDeck()[i] = getGameManager().getCardsAvailable().get(index);
             getGameManager().getCardsUsed().add(getGameManager().getCardsAvailable().get(index));
             getGameManager().getCardsAvailable().remove(index);
+        }
+        getGameManager().setGameState(new PlayerSwappingCardState(this));
+        try {
+            broadcast(getGameManager());
+        } catch (IOException e) {}
+        catch (EncodeException e) {}
+    }
+
+
+    public void SwapCards(User user, boolean swap) {
+        if(swap) {
+            Card[] cards = getGameManager().getTableDeck();
+            getGameManager().setTableDeck(user.getCards());
+            user.setCards(cards);
+        }
+        try {
+            broadcast(getGameManager());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (EncodeException e) {
+            throw new RuntimeException(e);
         }
         getGameManager().setGameState(new PlayerSwappingCardState(this));
     }

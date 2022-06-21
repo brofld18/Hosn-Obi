@@ -37,5 +37,9 @@ public class GameManager {
     public void resetCards() {
         cardsUsed.clear();
         cardsAvailable = CardStaticDatabase.getInstance().getCards();
+        for (User user :
+                users) {
+            user.setBlocked(false);
+        }
     }
 }

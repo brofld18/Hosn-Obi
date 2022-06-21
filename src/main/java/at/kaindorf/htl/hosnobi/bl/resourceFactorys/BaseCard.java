@@ -12,5 +12,5 @@ public class BaseCard extends Card {
         super(id, points, color, tenType);
     }
 
-    public static int getDeckCount() {return 33;}
+    public static int getDeckCount() {return 32;}
 }

@@ -18,4 +18,6 @@ public class User {
     private int lives;
     @NonNull
     private boolean loaded = false;
+    @NonNull
+    private boolean blocked = false;
 }

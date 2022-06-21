@@ -33,13 +33,13 @@ public class CardStaticDatabase {
                     for (int i = 1; i <= 8; i++) {
                         int points = 6;
                         Card.TenType tenType = null;
-                        if(i%8 < 3) points += i%8;
-                        else if(i%8 == 7) points = 11;
+                        if(i < 4) points += i;
+                        else if(i == 8) points = 11;
                         else {
                             points = 10;
-                            tenType = i%8 == 3 ? Card.TenType.Ten :
-                                    i%8 == 4 ? Card.TenType.Jack :
-                                    i%8 == 5 ? Card.TenType.Queen : Card.TenType.King;
+                            tenType = i == 4 ? Card.TenType.Ten :
+                                    i == 4 ? Card.TenType.Jack :
+                                    i == 5 ? Card.TenType.Queen : Card.TenType.King;
                         }
                         cards.add(new BaseCard(idCounter++, points, cardColor, tenType));
                     }

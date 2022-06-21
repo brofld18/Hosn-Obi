@@ -2,12 +2,12 @@ package at.kaindorf.htl.hosnobi.bl.states;
 
 import at.kaindorf.htl.hosnobi.bl.User;
 import at.kaindorf.htl.hosnobi.bl.api.websockets.game.GameEndpoint;
-import at.kaindorf.htl.hosnobi.bl.resourceFactorys.BaseCard;
 import at.kaindorf.htl.hosnobi.bl.db.UserDatabase;
 import at.kaindorf.htl.hosnobi.bl.resourceFactorys.Card;
 import jakarta.websocket.EncodeException;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 public class PlayerSwappingCardState extends GameState{
@@ -85,5 +85,6 @@ public class PlayerSwappingCardState extends GameState{
     public void PlayerBlock() {
         lastRound = true;
         lastUser = currentPlayer;
+        getGameManager().getUsers()[currentPlayer].setBlocked(true);
     }
 }
