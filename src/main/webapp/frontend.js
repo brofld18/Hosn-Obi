@@ -368,7 +368,7 @@ function SetGameManager(gameManager) {
 
 }
 
-//ich gette Username - ich zeige Spieler hat gewonnen --> Moritz nach brunch
+//ich gette Username - ich zeige Spieler hat gewonnen --> habe dafür Punkte zeigen eingebaut + farbliche Hervorhebung der meisten und wenigsten Punkte
 //ich bekomme Lebencounter Array[4] --> Stelle 0 Spieler selbst --> Flo Kontrolle
 
 //Wenn man selbst wieder dran ist die Variable cardsSwitched wieder auf 0 setzen. --> Flo bitte machen
