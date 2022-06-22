@@ -2,7 +2,7 @@ let socket = null;
 let offset = 0;
 
 function startSocket() {
-    socket = new WebSocket("ws://brombauer.tplinkdns.com/Hosn-Obi/websocket/game/" + gameId + "/" + userId);
+    socket = new WebSocket("ws://localhost:8080/Hosn-Obi-1.0-SNAPSHOT/websocket/game/" + gameId + "/" + userId);
 
     socket.onopen = function (e) {
 
