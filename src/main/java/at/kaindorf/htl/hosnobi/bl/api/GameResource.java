@@ -16,6 +16,7 @@ import jakarta.ws.rs.core.UriBuilder;
 import jakarta.ws.rs.core.UriInfo;
 import nonapi.io.github.classgraph.json.JSONSerializer;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 @Path("/game")
@@ -57,8 +58,7 @@ public class GameResource {
     @Path("/{gameId}/{userId}")
     @Consumes("application/json")
     public Response swapCards(@PathParam("gameId") @DefaultValue("-1") int gameId,
-                              @PathParam("userId") @DefaultValue("-1") int userId, boolean[] swap) {
-        if(swap.length != 3) return Response.status(Response.Status.BAD_REQUEST).build();
+                              @PathParam("userId") @DefaultValue("-1") int userId, boolean swap) {
         try {
             GameManager game = GameDatabase.getInstance().getGameById(gameId);
             User user = null;
@@ -71,7 +71,7 @@ public class GameResource {
             }
             if(user == null) return Response.status(Response.Status.NOT_FOUND).build();
             if(game.getGameState() instanceof HandingOutCardsState) ((HandingOutCardsState) game.getGameState())
-                    .AddSwapCards(user, null);
+                    .SwapCards(user, swap);
             return Response.ok().build();
         } catch (GameNotFoundException gnfe) {
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -124,7 +124,8 @@ public class GameResource {
     public Response getGame(@PathParam("gameId") @DefaultValue("-1") int gameId) {
         try {
             GameManager game = GameDatabase.getInstance().getGameById(gameId);
-            return Response.ok(new Gson().toJson(game)).build();
+            Gson gson = new Gson();
+            return Response.ok(gson.toJson(game)).build();
         } catch (GameNotFoundException gnfe) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }

@@ -8,6 +8,8 @@ import at.kaindorf.htl.hosnobi.bl.exceptions.GameNotFoundException;
 import at.kaindorf.htl.hosnobi.bl.exceptions.IllegalStateMethodCallException;
 import at.kaindorf.htl.hosnobi.bl.exceptions.UserNotFoundException;
 import at.kaindorf.htl.hosnobi.bl.states.HandingOutCardsState;
+import at.kaindorf.htl.hosnobi.bl.states.PlayerSwappingCardState;
+import com.google.gson.Gson;
 import jakarta.websocket.*;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
@@ -40,11 +42,6 @@ public class GameEndpoint {
             if(!gameEndpoints.containsKey(gameId))
                 gameEndpoints.put(gameId, new ArrayList<>());
             gameEndpoints.get(gameId).add(this);
-            try {
-                broadcast(gameManager);
-            } catch (EncodeException e) {
-                throw new RuntimeException(e);
-            }
         } catch (GameNotFoundException gnfe) {
             session.close(new CloseReason(CloseReason.CloseCodes.CANNOT_ACCEPT, "There is no game with the id " + gameId));
         } catch (UserNotFoundException unfe) {
@@ -60,7 +57,7 @@ public class GameEndpoint {
         try {
             UserDatabase.getInstance().getUserById(userId);
             GameManager gameManager = GameDatabase.getInstance().getGameById(gameId);
-            if(gameManager.getGameState() instanceof HandingOutCardsState) return;
+            if(gameManager.getGameState() instanceof HandingOutCardsState) gameManager.setGameState(new PlayerSwappingCardState(gameManager.getGameState()));
             if(userId == gameManager.getUsers()[gameManager.getGameState().currentPlayer].getId()) {
                 switch (message) {
                     case "NextPlayer":
@@ -69,23 +66,22 @@ public class GameEndpoint {
                         break;
                     case "PlayerBlock":
                         gameManager.getGameState().PlayerBlock();
-                        broadcast(gameManager);
                         break;
                     default:
                         try {
-                            gameManager.getGameState().ChooseCard(JSONDeserializer.deserializeObject(new HashMap<Integer, Integer>().getClass(), message));
-                            broadcast(gameManager);
+                            Map<String, String> gson = new Gson().fromJson(message, HashMap.class);
+                            Map<Integer, Integer> wantSwapped = new HashMap<>();
+                            for (String keyValue :
+                                    gson.keySet()) {
+                                wantSwapped.put(Integer.parseInt(keyValue), Integer.parseInt(gson.get(keyValue)));
+                            }
+                            gameManager.getGameState().ChooseCard(wantSwapped);
                         } catch (IllegalArgumentException iae) {
                             return;
                         }
                 }
             } else {
                 return;
-            }
-            try {
-                broadcast(gameManager);
-            } catch (EncodeException e) {
-                throw new RuntimeException(e);
             }
         } catch (GameNotFoundException gnfe) {
             session.close(new CloseReason(CloseReason.CloseCodes.CANNOT_ACCEPT, "There is no game with the id " + gameId));
@@ -125,7 +121,7 @@ public class GameEndpoint {
                     synchronized (endpoint) {
                         try {
                             endpoint.session.getBasicRemote().
-                                    sendObject(game);
+                                    sendObject(new Gson().toJson(game));
                         } catch (IOException | EncodeException e) {
                             e.printStackTrace();
                         }

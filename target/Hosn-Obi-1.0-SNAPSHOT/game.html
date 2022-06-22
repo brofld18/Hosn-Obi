@@ -47,7 +47,7 @@
             height: 40%;
         }
 
-        #player1, #player2, #player3, #player4{
+        #player1, #player2, #player3, #player4, #pointsAndState1, #pointsAndState2, #pointsAndState3, #pointsAndState4{
             font-size: 18px;
             font-weight: bold;
             color: white;
@@ -89,18 +89,10 @@
         #card1, #card2, #card3{
             box-shadow: 0px 0px 15px 5px #606060;
         }
-
-        #blocked1, #blocked2, #blocked3, #blocked4{
-            font-size: 18px;
-            font-weight: bold;
-            color: red;
-            background-color: black;
-        }
-
     </style>
 
 </head>
-<body>
+<body onload="onLoad()">
 <div id="field">
         <div class="row justify-content-center topLane">
             <div class="col-sm-2">
@@ -110,7 +102,7 @@
                     <div class="col-sm-3">
                         <div class="row justify-content-end" style="height: 28%">
                             <div class="col-sm-8" style="text-align: right">
-                                <span id="player3">Player 3</span><span id="blocked3"></span>
+                                <span id="player3">Player 3</span><span id="pointsAndState3"></span>
                                 <br/>
                                 <span class="blackAndWhite">Leben: </span><span id="player3lifes" class="blackAndWhite">3</span>
                             </div>
@@ -141,7 +133,7 @@
             <div class="col-sm-2">
                 <div class="row justify-content-start" style="height: 10%">
                     <div class="col-sm-8">
-                        <span id="player2">Player 2</span><span id="blocked2"></span>
+                        <span id="player2">Player 2</span><span id="pointsAndState2"></span>
                         <br/>
                         <span class="blackAndWhite">Leben: </span><span id="player2lifes" class="blackAndWhite">3</span>
                     </div>
@@ -178,7 +170,7 @@
             <div class="col-sm-2">
                 <div class="row justify-content-end" style="height: 10%">
                     <div class="col-sm-8" style="text-align: right">
-                        <span id="player4">Player 4</span><span id="blocked4"></span>
+                        <span id="player4">Player 4</span><span id="pointsAndState4"></span>
                         <br/>
                         <span class="blackAndWhite">Leben: </span><span id="player4lifes" class="blackAndWhite">3</span>
                     </div>
@@ -206,7 +198,7 @@
             <div class="col-sm-8">
                 <div class="row justify-content-center" style="height: 100%">
                     <div class="col-sm-2" style="text-align: right; padding-top: 23%">
-                        <span id="player1">Player 1</span><span id="blocked1"></span>
+                        <span id="player1">Player 1</span><span id="pointsAndState1"></span>
                         <br/>
                         <span id="styledFont" class="blackAndWhite">Leben: </span><span id="player1lifes" class="blackAndWhite">3</span>
                     </div>
@@ -228,7 +220,7 @@
                             <button type="button" class="btn btn-success" onclick="switchAll()" style="width: 80%">Alle austauschen</button>
                         </div>
                         <div style="padding-top: 5%">
-                            <button type="button" class="btn btn-success" onclick="nextOne()" style="width: 80%">Weiter</button>
+                            <button type="button" class="btn btn-success" onclick="NextPlayer()" style="width: 80%">Weiter</button>
                         </div>
                         <div style="padding-top: 5%">
                             <button type="button" class="btn btn-danger" onclick="block()" style="width: 80%">Sperren</button>

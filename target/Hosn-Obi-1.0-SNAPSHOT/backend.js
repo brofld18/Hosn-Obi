@@ -75,10 +75,17 @@ async function getGame() {
         for(i = 0; i < data.users.length; i++) {
             if(data.users[i] != null) {
                 usernames[i] = data.users[i].username;
+                if(data.users[i].id == userId) {
+                    offset = i;
+                }
             } else {
                 usernames[i] = "";
             }
         }
+        if(window.location.href.endsWith("game.html")) {
+            SetGameManager(data);
+        }
+
     }).catch(error => alert(error));
     sessionStorage.setItem("usernames", usernames);
     try {
@@ -100,10 +107,13 @@ async function loadVariables() {
 
 async function startGame() {
     await fetch('./api/game/' + gameId + "/startGame", {
-        method: "PUT"
+        method: "PUT",
+        body: ""
     }).then(response => {
         if (response.status != 200) {
             throw new Error(response.status + ": " + response.statusText);
+        } else {
+            inGame = true;
         }
     }).catch(error => alert(error));
 }
@@ -117,12 +127,21 @@ async function gameStarted() {
         }
         return response.json();
     }).then(async data => {
-        if (data) return
+        if (data) return;
+        else if(inGame) return;
         else {
             await new Promise(resolve => setTimeout(resolve, 2000));
             await getGame();
             await gameStarted();
+            window.open("./game.html", "_self");
             sessionStorage.setItem("inGame", "true");
         }
     }).catch(error => alert(error));
+}
+
+function getImage(card) {
+    if(card == null) return "";
+    if((card.tenType == null || card.tenType == "ten") && card.points != 11) return `./Images/Cardset1/${card.points}_of_${card.color}.png`;
+    else if(card.points == 11) return `./Images/Cardset1/ace_of_${card.color}.png`;
+    else return `./Images/Cardset1/${card.tenType}_of_${card.color}.png`;
 }

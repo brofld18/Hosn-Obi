@@ -36,11 +36,6 @@ public class GameTest {
         boolean done = false;
         while (!done) {
             assertEquals(gameManager.getGameState() instanceof HandingOutCardsState, true);
-            ((HandingOutCardsState) gameManager.getGameState()).AddSwapCards(gameManager.getUsers()[0], new boolean[]{true, true, true});
-            ((HandingOutCardsState) gameManager.getGameState()).AddSwapCards(gameManager.getUsers()[1], new boolean[]{false, false, true});
-            ((HandingOutCardsState) gameManager.getGameState()).AddSwapCards(gameManager.getUsers()[2], new boolean[]{false, false, false});
-            ((HandingOutCardsState) gameManager.getGameState()).AddSwapCards(gameManager.getUsers()[3], new boolean[]{false, true, false});
-
 
             //Player 1 swap
             assertEquals(gameManager.getGameState() instanceof PlayerSwappingCardState, true);
